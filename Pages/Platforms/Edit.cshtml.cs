@@ -8,9 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gameify.Data;
 using Gameify.Models;
-using System.Security.Policy;
 
-namespace Gameify.Pages.Games
+namespace Gameify.Pages.Platforms
 {
     public class EditModel : PageModel
     {
@@ -22,7 +21,7 @@ namespace Gameify.Pages.Games
         }
 
         [BindProperty]
-        public Game Game { get; set; } = default!;
+        public Platform Platform { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,14 +30,12 @@ namespace Gameify.Pages.Games
                 return NotFound();
             }
 
-            var game =  await _context.Game.FirstOrDefaultAsync(m => m.ID == id);
-            if (game == null)
+            var platform =  await _context.Platform.FirstOrDefaultAsync(m => m.ID == id);
+            if (platform == null)
             {
                 return NotFound();
             }
-            Game = game;
-            ViewData["DeveloperID"] = new SelectList(_context.Set<Developer>(), "ID", "DeveloperName");
-            ViewData["PlatformID"] = new SelectList(_context.Set<Platform>(), "ID", "PlatformName");
+            Platform = platform;
             return Page();
         }
 
@@ -51,7 +48,7 @@ namespace Gameify.Pages.Games
                 return Page();
             }
 
-            _context.Attach(Game).State = EntityState.Modified;
+            _context.Attach(Platform).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +56,7 @@ namespace Gameify.Pages.Games
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GameExists(Game.ID))
+                if (!PlatformExists(Platform.ID))
                 {
                     return NotFound();
                 }
@@ -72,9 +69,9 @@ namespace Gameify.Pages.Games
             return RedirectToPage("./Index");
         }
 
-        private bool GameExists(int id)
+        private bool PlatformExists(int id)
         {
-            return _context.Game.Any(e => e.ID == id);
+            return _context.Platform.Any(e => e.ID == id);
         }
     }
 }

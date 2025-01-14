@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Gameify.Data;
 using Gameify.Models;
 
-namespace Gameify.Pages.Games
+namespace Gameify.Pages.Platforms
 {
     public class IndexModel : PageModel
     {
@@ -19,12 +19,11 @@ namespace Gameify.Pages.Games
             _context = context;
         }
 
-        public IList<Game> Game { get;set; } = default!;
+        public IList<Platform> Platform { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Game = await _context.Game.Include(b => b.DeveloperName).ToListAsync();
-            Game = await _context.Game.Include(b => b.Platform).ToListAsync();
+            Platform = await _context.Platform.ToListAsync();
         }
     }
 }

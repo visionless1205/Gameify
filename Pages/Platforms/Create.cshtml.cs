@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Gameify.Data;
 using Gameify.Models;
 
-namespace Gameify.Pages.Games
+namespace Gameify.Pages.Platforms
 {
     public class CreateModel : PageModel
     {
@@ -21,14 +21,13 @@ namespace Gameify.Pages.Games
 
         public IActionResult OnGet()
         {
-            ViewData["DeveloperID"] = new SelectList(_context.Set<Developer>(), "ID", "DeveloperName");
-            ViewData["PlatformID"] = new SelectList(_context.Set<Platform>(), "ID", "PlatformName");
             return Page();
         }
 
         [BindProperty]
-        public Game Game { get; set; } = default!;
+        public Platform Platform { get; set; } = default!;
 
+        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -36,7 +35,7 @@ namespace Gameify.Pages.Games
                 return Page();
             }
 
-            _context.Game.Add(Game);
+            _context.Platform.Add(Platform);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

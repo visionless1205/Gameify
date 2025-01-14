@@ -1,29 +1,29 @@
 ﻿@page
-@model Gameify.Pages.Developers.IndexModel
+@model Gameify.Pages.Platforms.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Developers Database</h1>
+<h1>Platofrms Database</h1>
 
 <p>
-    <a asp-page="Create">Add a New Developer</a>
+    <a asp-page="Create">Add a New Platform</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Developer[0].DeveloperName)
+                @Html.DisplayNameFor(model => model.Platform[0].PlatformName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Developer) {
+@foreach (var item in Model.Platform) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DeveloperName)
+                @Html.DisplayFor(modelItem => item.PlatformName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
@@ -34,6 +34,3 @@
 }
     </tbody>
 </table>
-
-<body style="background-image: url('Images/Wallpaper.png');">
-</body>

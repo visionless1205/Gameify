@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Games Database</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add a New Game</a>
 </p>
 <table class="table">
     <thead>
@@ -27,8 +27,11 @@
             </th> 
             <th>
                 @Html.DisplayNameFor(model => model.Game[0].DeveloperName.DeveloperName)
-            </th> 
-           <th></th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Platform.PlatformName)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +52,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DeveloperName.DeveloperName)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Platform.PlatformName)
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

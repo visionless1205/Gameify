@@ -17,8 +17,12 @@ namespace Gameify.Models
         public DateTime ReleaseDate { get; set; }
         public int? DeveloperID { get; set; }
         public Developer? DeveloperName { get; set; }
-   
+        public int? PlatformID { get; set; } // Foreign key for Platform
+        [ForeignKey("PlatformID")]
+        public Platform? Platform { get; set; }
 
-    public string Game_Genre {  get; set; }
+
+
+        public string Game_Genre {  get; set; }
     }
 }

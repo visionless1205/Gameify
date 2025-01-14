@@ -16,5 +16,6 @@ namespace Gameify.Data
 
         public DbSet<Gameify.Models.Game> Game { get; set; } = default!;
         public DbSet<Gameify.Models.Developer> Developer { get; set; } = default!;
+        public DbSet<Gameify.Models.Platform> Platform { get; set; } = default!;
     }
 }
